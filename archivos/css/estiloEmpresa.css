@@ -1,0 +1,20 @@
+
+form{
+    border-radius: 5%;
+    padding: 50px 60px;
+    margin-top: 20vh;
+    -webkit-box-shadow: -16px 3px 197px -51px rgba(13,12,13,1);
+    -moz-box-shadow: -16px 3px 197px -51px rgba(13,12,13,1);
+    box-shadow: -16px 3px 197px -51px rgba(13,12,13,1);
+    
+
+}
+
+.titulo{
+    text-align: center;
+    margin: 5%;
+}
+
+.boton{
+    text-align: center;
+}

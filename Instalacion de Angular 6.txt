@@ -1,0 +1,21 @@
+En el cmd colocar el siguiente comando:
+
+npm install -g @angular/cli@latest 
+
+Esto con el fin de instalar la ultima version de angular.
+
+Ahora vamos a una capeta que queramos e instalamos angular. puede ser en el disco local D.
+
+en el cmd nos ubicamos en la ruta en la que queremos instalar angular y ejecutamos el siguiente comando.
+
+ng new instalacion-angular6
+
+luego nos movemos a la carpeta instalcion-angular6
+
+cd instalacion-angular6
+
+y seguidamente ejecutamos este comando
+
+ng serve
+
+y esto arranca el servidor local de angular
