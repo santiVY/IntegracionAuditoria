@@ -51,21 +51,14 @@ app.get("/preguntas",function(req,res){
     ); 
 });
 
-app.get("/preguntas_control",function(req,res){ 
+app.get("/norma",function(req,res){ 
     res.sendFile(
         path.join(
-            __dirname, '/archivos/src/views/preguntas_control.html'
+            __dirname, '/archivos/src/views/Norma.html'
         )
     ); 
 });
 
-app.get("/preguntas_adquisicion",function(req,res){ 
-    res.sendFile(
-        path.join(
-            __dirname, '/archivos/src/views/preguntas_adquisicion.html'
-        )
-    ); 
-});
 
 app.listen(3000, function(){ //definirelpuerto 3000 para escuchar la app
     console.log("funcione!");
