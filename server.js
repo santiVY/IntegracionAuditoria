@@ -22,7 +22,7 @@ app.use(express.static("archivos"));
 app.get("/index",function(req,res){ //.get es un metodo el objeto en donde se le asignan diferentes parametros incluso otro tipo funcion
     res.sendFile(
         path.join(
-            __dirname, '/archivos/index.html'
+            __dirname, '/archivos/Index.html'
         )
     ); 
 });
@@ -30,23 +30,23 @@ app.get("/index",function(req,res){ //.get es un metodo el objeto en donde se le
 app.get("/empresa",function(req,res){ 
     res.sendFile(
         path.join(
-            __dirname, '/archivos/src/views/empresa.html'
+            __dirname, '/archivos/src/views/Empresa.html'
         )
     ); 
 });
 
-app.get("/preguntas_seguridad",function(req,res){ 
+app.get("/auditoria",function(req,res){ 
     res.sendFile(
         path.join(
-            __dirname, '/archivos/src/views/preguntas_seguridad.html'
+            __dirname, '/archivos/src/views/Auditoria.html'
         )
     ); 
 });
 
-app.get("/preguntas_gestion",function(req,res){ 
+app.get("/preguntas",function(req,res){ 
     res.sendFile(
         path.join(
-            __dirname, '/archivos/src/views/preguntas_gestion.html'
+            __dirname, '/archivos/src/views/Preguntas.html'
         )
     ); 
 });
