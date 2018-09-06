@@ -6,8 +6,23 @@
 var express=require("express");
 var app = express(); //app es una instancioa del objeto express
 var path = require("path");//vanantes de listen
+var mysql = require('mysql');
 
 
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "123",
+    database: "db_auditoria"
+});
+
+app.get("/empresa/get", function (req, res) {
+    con.query("SELECT * FROM empresa", function (err, result, fields) {
+        if (err) throw err;
+        console.log(err);
+        res.json(result);
+    });
+});
 
 app.get("/",function(req,res){ //.get es un metodo el objeto en donde se le asignan diferentes parametros incluso otro tipo funcion
     res.send("Hola"); //se envia una respuesta
