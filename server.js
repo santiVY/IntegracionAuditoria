@@ -1,27 +1,74 @@
-//Primer ejemplo
-//var variable=require("IUSH"); 
-//console.log(variable);
 
 //Almacenar una libreria enuna variable(usar comando npm install express)
 var express=require("express");
-var app = express(); //app es una instancioa del objeto express
+var app = express(); //app es una instancia del objeto express
 var path = require("path");//vanantes de listen
-var mysql = require('mysql');
+const mysql = require('mysql2');
+var bodyParser = require('body-parser');
+var multer = require('multer'); // v1.0.5
+var upload = multer(); // for parsing multipart/form-data
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.set('port', process.env.PORT || 3000);
 
 
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "123",
-    database: "db_auditoria"
-});
+const con = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: "root",
+    database: 'db_auditoria'
+  });
 
-app.get("/empresa/get", function (req, res) {
-    con.query("SELECT * FROM empresa", function (err, result, fields) {
+app.get("/auditorias", function (req, res) {
+    con.query('SELECT * FROM `auditoria`', function (err, result, fields) {
         if (err) throw err;
         console.log(err);
         res.json(result);
     });
+});
+
+app.get("/empresas", function (req, res) {
+    con.query('SELECT * FROM `empresa`', function (err, result, fields) {
+        if (err) throw err;
+        console.log(err);
+        res.json(result);
+    });
+});
+
+app.post("/empresas",upload.array(), function (req, res, next) {
+    console.log(req.body.nombre);
+     con.query('INSERT INTO `empresa` (`nombre`, `nit`) VALUES("'+req.body.nombre+'",'+ req.body.nit+')', function (err, result, fields) {
+        if (err) throw err;
+        console.log(err);
+        res.redirect('/index');
+    });
+});
+
+app.get("/normas", function (req, res) {
+    con.query('SELECT * FROM `norma`', function (err, result, fields) {
+        if (err) throw err;
+        console.log(err);
+        res.json(result);
+    });
+});
+
+app.post("/normas",upload.array(), function (req, res, next) {
+    console.log(req.body.nombre);
+     con.query('INSERT INTO `norma` (`nombre`) VALUES("'+req.body.norma+'")', function (err, result, fields) {
+        if (err) throw err;
+        console.log(err);
+        res.redirect('/index');
+    });
+});
+
+app.get("/script.js",function(req,res){ 
+    res.sendFile(
+        path.join(
+            __dirname, '/archivos/js/script.js'
+        )
+    ); 
 });
 
 app.get("/",function(req,res){ //.get es un metodo el objeto en donde se le asignan diferentes parametros incluso otro tipo funcion
@@ -33,7 +80,7 @@ app.get("/",function(req,res){ //.get es un metodo el objeto en donde se le asig
 // Para que los archivos estaticos queden disponibles.
 app.use(express.static("archivos"));
 
-
+//---------Rutas de las vistas-------------
 app.get("/index",function(req,res){ //.get es un metodo el objeto en donde se le asignan diferentes parametros incluso otro tipo funcion
     res.sendFile(
         path.join(
@@ -74,8 +121,9 @@ app.get("/norma",function(req,res){
     ); 
 });
 
+//---------Fin de rutas de las vistas-------------
+
 
 app.listen(3000, function(){ //definirelpuerto 3000 para escuchar la app
     console.log("funcione!");
-    //console.log(publicPath);
 });
