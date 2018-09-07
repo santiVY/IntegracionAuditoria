@@ -17,7 +17,7 @@ app.set('port', process.env.PORT || 3000);
 const con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: "root",
+    password: "123",
     database: 'db_auditoria'
   });
 
