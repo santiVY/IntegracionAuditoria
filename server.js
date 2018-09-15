@@ -63,6 +63,14 @@ app.post("/normas",upload.array(), function (req, res, next) {
     });
 });
 
+app.get("/preguntasAuditoria", function (req, res) {
+    con.query('SELECT * FROM preguntas as p INNER JOIN norma as n WHERE n.nombre ="ISO27001" and p.id_norma = n.id_norma', function (err, result, fields) {
+        if (err) throw err;
+        console.log(err);
+        res.json(result);
+    });
+});
+
 app.get("/script.js",function(req,res){ 
     res.sendFile(
         path.join(
@@ -70,6 +78,7 @@ app.get("/script.js",function(req,res){
         )
     ); 
 });
+
 
 app.get("/",function(req,res){ //.get es un metodo el objeto en donde se le asignan diferentes parametros incluso otro tipo funcion
     res.send("Hola"); //se envia una respuesta
