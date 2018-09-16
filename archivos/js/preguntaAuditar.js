@@ -1,6 +1,11 @@
 $(document).ready(function () {
+    getPreguntasAuditar();
+});
+
+function getPreguntasAuditar() {
     IDS = [];
-      $.getJSON("/preguntasAuditoria", function(response){
+    var norma  = getParameterByName('norma');
+      $.getJSON("preguntas/"+norma, null, function(response){
         $(".preguntas").html();
         select_template = "<select id='answer_:id' class='form-control'><option value='-1'>N/A</option><option value='0'>NO</option><option value='1'>SI</option></select>";
         for(i=0; i<response.length; i++){
@@ -13,16 +18,12 @@ $(document).ready(function () {
           tr+= "</tr>";
           $(".preguntas").append(tr);
         }
-      });
-});
-
-function getPreguntasAuditar() {
-    $.getJSON("/preguntasAuditoria", function (data) {
-        var items = [];
-        $.each(data, function (key, val) {
-            items.push("<tr><td>" + (items.length + 1) + "</td> <td>" + val.texto + "</td> <td> si </td> </tr>");
-        });
-        console.log(items);
-        $(".preguntas").append(items);
     });
+}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }

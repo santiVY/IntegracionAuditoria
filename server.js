@@ -66,14 +66,15 @@ app.post("/normas", upload.array(), function (req, res, next) {
 
 });
 
-app.get("/preguntasAuditoria", function (req, res) {
+app.get("/preguntas/:norma", function (req, res) {
     var norma = req.params.norma;
-    con.query('SELECT * FROM pregunta as p INNER JOIN norma as n WHERE n.nombre ="ISO27001" and p.norma_idnorma = n.idnorma', function (err, result, fields) {
+    con.query('SELECT * FROM pregunta as p INNER JOIN norma as n WHERE n.nombre = ? and p.norma_idnorma = n.idnorma', [norma], function (err, result, fields) {
         if (err) throw err;
         console.log(err);
         res.json(result);
     });
 });
+
 
 app.get("/script.js", function (req, res) {
     res.sendFile(
