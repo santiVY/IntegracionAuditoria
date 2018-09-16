@@ -54,6 +54,7 @@ app.get("/normas", function (req, res) {
     });
 });
 
+
 app.post("/normas", upload.array(), function (req, res, next) {
     var norma = req.body.norma;
     console.log(norma);
@@ -96,7 +97,7 @@ app.use(express.static("archivos"));
 app.get("/index", function (req, res) { //.get es un metodo el objeto en donde se le asignan diferentes parametros incluso otro tipo funcion
     res.sendFile(
         path.join(
-            __dirname, '/archivos/Index.html'
+            __dirname, '/archivos/index.html'
         )
     );
 });
