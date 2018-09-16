@@ -24,3 +24,5 @@ consulta para las preguntas
 SELECT texto FROM preguntas as p INNER JOIN norma as n WHERE n.nombre ="ISO27001" and p.id_norma = n.id_norma;
 
 '+ req.query.norma +'
+
+rgb(0, 123, 255);color azul de app
