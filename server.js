@@ -1,6 +1,6 @@
 
 //Almacenar una libreria enuna variable(usar comando npm install express)
-var express=require("express");
+var express = require("express");
 var app = express(); //app es una instancia del objeto express
 var path = require("path");//vanantes de listen
 const mysql = require('mysql2');
@@ -18,8 +18,8 @@ const con = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: "123",
-    database: 'db_auditoria'
-  });
+    database: 'auditoria'
+});
 
 app.get("/auditorias", function (req, res) {
     con.query('SELECT * FROM `auditoria`', function (err, result, fields) {
@@ -37,9 +37,9 @@ app.get("/empresas", function (req, res) {
     });
 });
 
-app.post("/empresas",upload.array(), function (req, res, next) {
+app.post("/empresas", upload.array(), function (req, res, next) {
     console.log(req.body.nombre);
-     con.query('INSERT INTO `empresa` (`nombre`, `nit`) VALUES("'+req.body.nombre+'",'+ req.body.nit+')', function (err, result, fields) {
+    con.query('INSERT INTO `empresa` (`nombre`, `nit`) VALUES("' + req.body.nombre + '",' + req.body.nit + ')', function (err, result, fields) {
         if (err) throw err;
         console.log(err);
         res.redirect('/index');
@@ -54,33 +54,36 @@ app.get("/normas", function (req, res) {
     });
 });
 
-app.post("/normas",upload.array(), function (req, res, next) {
-    console.log(req.body.nombre);
-     con.query('INSERT INTO `norma` (`nombre`) VALUES("'+req.body.norma+'")', function (err, result, fields) {
+app.post("/normas", upload.array(), function (req, res, next) {
+    var norma = req.body.norma;
+    console.log(norma);
+    con.query('INSERT INTO `norma` (`nombre`) VALUES("' + norma + '")', function (err, result, fields) {
         if (err) throw err;
         console.log(err);
         res.redirect('/index');
     });
+
 });
 
 app.get("/preguntasAuditoria", function (req, res) {
-    con.query('SELECT * FROM preguntas as p INNER JOIN norma as n WHERE n.nombre ="ISO27001" and p.id_norma = n.id_norma', function (err, result, fields) {
+    var norma = req.params.norma;
+    con.query('SELECT * FROM pregunta as p INNER JOIN norma as n WHERE n.nombre ="ISO27001" and p.norma_idnorma = n.idnorma', function (err, result, fields) {
         if (err) throw err;
         console.log(err);
         res.json(result);
     });
 });
 
-app.get("/script.js",function(req,res){ 
+app.get("/script.js", function (req, res) {
     res.sendFile(
         path.join(
             __dirname, '/archivos/js/script.js'
         )
-    ); 
+    );
 });
 
 
-app.get("/",function(req,res){ //.get es un metodo el objeto en donde se le asignan diferentes parametros incluso otro tipo funcion
+app.get("/", function (req, res) { //.get es un metodo el objeto en donde se le asignan diferentes parametros incluso otro tipo funcion
     res.send("Hola"); //se envia una respuesta
 });
 
@@ -90,49 +93,49 @@ app.get("/",function(req,res){ //.get es un metodo el objeto en donde se le asig
 app.use(express.static("archivos"));
 
 //---------Rutas de las vistas-------------
-app.get("/index",function(req,res){ //.get es un metodo el objeto en donde se le asignan diferentes parametros incluso otro tipo funcion
+app.get("/index", function (req, res) { //.get es un metodo el objeto en donde se le asignan diferentes parametros incluso otro tipo funcion
     res.sendFile(
         path.join(
             __dirname, '/archivos/Index.html'
         )
-    ); 
+    );
 });
 
-app.get("/empresa",function(req,res){ 
+app.get("/empresa", function (req, res) {
     res.sendFile(
         path.join(
             __dirname, '/archivos/src/views/Empresa.html'
         )
-    ); 
+    );
 });
 
-app.get("/auditoria",function(req,res){ 
+app.get("/auditoria", function (req, res) {
     res.sendFile(
         path.join(
             __dirname, '/archivos/src/views/Auditoria.html'
         )
-    ); 
+    );
 });
 
-app.get("/preguntas",function(req,res){ 
+app.get("/preguntas", function (req, res) {
     res.sendFile(
         path.join(
             __dirname, '/archivos/src/views/Preguntas.html'
         )
-    ); 
+    );
 });
 
-app.get("/norma",function(req,res){ 
+app.get("/norma", function (req, res) {
     res.sendFile(
         path.join(
             __dirname, '/archivos/src/views/Norma.html'
         )
-    ); 
+    );
 });
 
 //---------Fin de rutas de las vistas-------------
 
 
-app.listen(3000, function(){ //definirelpuerto 3000 para escuchar la app
+app.listen(3000, function () { //definirelpuerto 3000 para escuchar la app
     console.log("funcione!");
 });

@@ -11,7 +11,6 @@ function getEmpresas() {
         $.each(data, function (key, val) {
             items.push("<tr><td>" + (items.length + 1) + "</td> <td>" + val.nombre + "</td> <td>" + val.nit + "</td> </tr>");
         });
-        console.log(items);
         $(".empresas").append(items);
     });
 }
@@ -22,7 +21,6 @@ function getAuditoria() {
         $.each(data, function (key, val) {
             items.push("<tr><td>" + (items.length + 1) + "</td> <td>" + val.nombre + "</td> <td>" + val.nit + "</td> </tr>");
         });
-        console.log(items);
         $(".auditorias").append(items);
     });
 
@@ -33,7 +31,6 @@ function getNorma() {
         $.each(data, function (key, val) {
             items.push("<tr><td>" + (items.length + 1) + "</td> <td>" + val.nombre + "</td> </tr>");
         });
-        console.log(items);
         $(".normas").append(items);
     });
 }
