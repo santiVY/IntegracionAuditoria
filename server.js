@@ -42,7 +42,7 @@ app.post("/empresas", upload.array(), function (req, res, next) {
     con.query('INSERT INTO `empresa` (`nombre`, `nit`) VALUES("' + req.body.nombre + '",' + req.body.nit + ')', function (err, result, fields) {
         if (err) throw err;
         console.log(err);
-        res.redirect('/index');
+        /*res.redirect('/index');*/
     });
 });
 
@@ -61,12 +61,12 @@ app.post("/normas", upload.array(), function (req, res, next) {
     con.query('INSERT INTO `norma` (`nombre`) VALUES("' + norma + '")', function (err, result, fields) {
         if (err) throw err;
         console.log(err);
-        res.redirect('/index');
+        /*res.redirect('/index');*/
     });
 
 });
 
-app.get("/preguntas/:norma", function (req, res) {
+app.get('/preguntas/:norma', function (req, res) {
     var norma = req.params.norma;
     con.query('SELECT * FROM pregunta as p INNER JOIN norma as n WHERE n.nombre = ? and p.norma_idnorma = n.idnorma', [norma], function (err, result, fields) {
         if (err) throw err;
