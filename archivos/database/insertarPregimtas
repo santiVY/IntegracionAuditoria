@@ -1,0 +1,62 @@
+INSERT INTO pregunta (idpregunta, texto, norma_idnorma) VALUES
+(1,"¿Validan los datos de entrada a las apliaciones?",1),
+(2,"¿Los requisistos de negocio para proyectos nuevos o existentes, si presentan los requisistos de contoles de seguridad?",1),
+(3,"¿incorporan verificaciones de validación en las apliaciones que identifiquen corrupciones en la información?",1),
+(4,"¿Validadn los datos de salida de una aplicación que permita identificar que el procedimiento de la información almacenada
+es correcto y adecuado a las circunstancias?",1),
+(5,"¿Presentan politicas de controles criptograficos?",1),
+(6,"¿Implementan procedimientos para controlar las instalaciones de software?",1),
+(7,"¿Se restringe el acceso al codigo fuente de los programas?",1),
+(8,"¿Realizan restrinciones en los cambios a los paquetes de software?",1),
+(9,"¿Supervisan y monitorean el desarrollo de software contratado externamente?",1),
+(10,"¿Presentan metodos para detectar vulnerabilidades tecnicas de los sistemas de información?.",1),
+(11,"¿Existe un procedimiento formal para el registro y cancelación de usuarios en la empresa?",1),
+(12,"¿Se restringe y controla la asignación y uso de privilegios?",1),
+(13,"¿Las contraseñas se asignan con un tipo formal de gestión?",1),
+(14,"¿Manejan la politica de escritorio y pantalla despejadas?",1),
+(15,"¿Se emplea el uso de VPN para el acceso a usuarios remotamente?",1),
+(16,"¿Tienen y manejan protección en los puertos de configuración y diagnostico remoto?",1),
+(17,"¿Existe la separación en las redes entre servicios de información, usuarios y sistemas de información?",1),
+(18,"¿Presentan un control de enrutamiento en la red?",1),
+(19,"¿Poseen procedimientos de acceso seguro al sistema operativo?",1),
+(20,"¿Los usuarios o empleados presentan un ID unico para el uso presonal?",1),
+(21,"¿Poseen un sistema de gestión de contraseñas?",1),
+(22,"¿Suspenden las sesiones inactivas?",1),
+(23,"¿Utilizan limitaciones en los tiempos de conexión?",1),
+(24,"¿Los sistemas sensibles tienen un entorno informatico dedicado?",1),
+(25,"¿Presentan politicas, planes operativos y procedimientos para las actividades de trabajo remoto?",1),
+(26,"¿Presentan la documentacion de los procedimientos de operaciones?",1),
+(27,"¿Tienen dividida las instalaciones de desarrollo, ensayo y operacion?, se pide con el fin de evitar cambios no autorizados
+en el sistema operativo.",1),
+(28,"¿Tienen dividida las areas de responsabilidad?",1),
+(29,"¿Se cumple el control de prestación de servicios que son operados por las terceras partes?",1),
+(30,"¿Realizan seguimiento y adaptación del uso de los recursos de la empresa?",1),
+(31,"¿Se implementan controles de detención, prevención y recuperación para protegerse de códigos maliciosos?",1),
+(32,"¿Se verifica y controla el mapeo de códigos moviles?",1),
+(33,"¿Se realizan copias de respaldo de la información del software?",1),
+(34,"¿Se llevan controles en la red?",1),
+(35,"¿Hay seguridad en los servicios de red de la empresa?",1),
+(36,"¿La empresa cuenta con procedimientos para el manejo y almecenamiento de la información contra la divulgación 
+no autorizada?",1),
+(37,"¿La documentación del sistema esta protegida contra acceso no autorizado?",1),
+(38,"¿Poseen politicas y procedimientos para el intercambio de información entre el personal 
+de la empresa, externos entre otros, sea de manera digital o fisica?",1),
+(39,"¿Manejan controles en la información involucrada en el comercio electronico y 
+transaciones en linea?",1),
+(41,"¿La empresa elabora y mantiene grabaciones de los registros para la auditoria de las actividades de los usuarios?",1),
+(42,"¿Las fallas se resgistran y analizan para tomar acciones adecuadas?",1),
+(43,"¿Los relojes dentro de la red se la organización estan sincronizados?",1),
+(44,"¿La empresa cuenta con perimetos de seguridad tales como: paredes, puertas de acceso controladas con tarjeta o mostradores
+de recepción atendidos?",1),
+(45,"¿Las areas seguras tiene controles de acceso apropiado para autorizar el paso solo a personal autorizado?",1),
+(46,"¿Tienen diseñado y aplicado la seguridad fisica para las oficinas, recintos e instalaciones?",1),
+(47,"¿Tiene instalado seguridad contra eventos ambientales como incendio, inundación, terremoto, explosión, manifestaciones
+sociales y otras formas de desastre natural o artificial?",1),
+(48,"¿Aplica las directrices para trabajar en areas seguras?",1),
+(49,"¿Possen algun tipo de seguridad y control en los lugares donde puede ingresar personal no autorizado?",1),
+(50,"Respecto a la pregunta anterior, ¿Estos accesos estan lejos de los lugares donde se maneja la información de la empresa?",1),
+(51,"¿Los equipos se encuentran protegidos ante eventos ambientales o fallas de energia u otras anomalias
+causadas por fallas en el suministro de servicios?",1),
+(52,"¿El cableado electrico y de telecomunicaciones se transporta de manera segura, es decir, utilizan 
+canalestas o tuberias?",1),
+(53,"¿Realizan mantenimientos a sus equipos? Ver los reportes.",1);
