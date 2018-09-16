@@ -3,7 +3,12 @@ function validarNorma(respuesta) {
     var msg = "La norma se guardo correctamente!\n";
     
     if(respuesta.nombreNorma.value != "") {
-      swal(msg, "Da click en OK","success");
+      swal({
+        title: msg,
+        text: "Da click en el botón aceptar!",
+        icon: "success",
+        button: "Aceptar",
+      });
       return ok;
     }
   }

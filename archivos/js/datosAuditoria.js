@@ -43,6 +43,11 @@ function validar(resultado) {
     }
 
     if (ok == false)
-        swal(msg, "click en ok para ingresar los datos", "warning");
+        swal({
+            title: msg,
+            text: "Da click en el boton aceptar para ingresar los datos",
+            icon: "warning",
+            button: "Aceptar",
+          });
     return ok;
 }
