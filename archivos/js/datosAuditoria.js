@@ -49,5 +49,16 @@ function validar(resultado) {
             icon: "warning",
             button: "Aceptar",
           });
+
+    localStorage["empresa"] = $("#empresa").val();
+    localStorage["norma"] = $("#nombreNorma").val();
+    localStorage["fecha"] = $("#fecha").val();
+
     return ok;
 }
+
+$(document).ready(()=>{
+    localStorage["empresa"] = "";
+    localStorage["norma"] = "";
+    localStorage["fecha"] = "";
+});

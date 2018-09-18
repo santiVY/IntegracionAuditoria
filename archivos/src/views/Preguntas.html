@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../css/estiloIndex.css">
+    <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
     <title>Preguntas</title>
 </head>
 
@@ -16,7 +17,7 @@
         <div class="row">
             <div class="col-md-2 col-sm-1 col-xs-12"></div>
             <div class="col-md-8 col-sm-10 col-xs-12">
-                <form >
+                <form>
                     <div class="row">
                         <div class="container-fluid">
                             <h2 class="titulo">Preguntas</h2>
@@ -25,18 +26,18 @@
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10">
                                     <div class="scrollTablaPreguntas">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>PREGUNTA</th>
-                                                <th>RESPUESTA</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="preguntas">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>PREGUNTA</th>
+                                                    <th>RESPUESTA</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="preguntas">
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                                 <div class="col-md-1"></div>
@@ -48,7 +49,7 @@
                         <div class="container">
                             <div class="contenido">
                                 <div class="boton">
-                                    <a href="" class="btn btn-dark">Evaluar</a>
+                                    <input onclick="enviar_respuesta();" class="btn btn-dark" value="Evaluar"></input>
                                     <a href="/auditoria" class="btn btn-dark">Atrás</a>
                                 </div>
                             </div>
@@ -59,7 +60,7 @@
             <div class="col-md-2 col-sm-1 col-xs-12"></div>
         </div>
     </div>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"

@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `auditoria`
---
+CREATE DATABASE auditoria;
+USE  auditoria;
 
 -- --------------------------------------------------------
 
@@ -89,6 +90,12 @@ CREATE TABLE `pregunta` (
   `norma_idnorma` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `exam_question` (
+  `exam` int(11) NOT NULL,
+  `question` varchar(1000) NOT NULL,
+  `result` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Volcado de datos para la tabla `pregunta`
 --
@@ -133,6 +140,7 @@ INSERT INTO `pregunta` (`idpregunta`, `texto`, `norma_idnorma`) VALUES
 (37, '¿La documentación del sistema esta protegida contra acceso no autorizado?', 1),
 (38, '¿Poseen politicas y procedimientos para el intercambio de información entre el personal \r\nde la empresa, externos entre otros, sea de manera digital o fisica?', 1),
 (39, '¿Manejan controles en la información involucrada en el comercio electronico y \r\ntransaciones en linea?', 1),
+(40, '¿Manejan controles en la información involucrada en el comercio electronico y \r\ntransaciones en linea?', 1),
 (41, '¿La empresa elabora y mantiene grabaciones de los registros para la auditoria de las actividades de los usuarios?', 1),
 (42, '¿Las fallas se resgistran y analizan para tomar acciones adecuadas?', 1),
 (43, '¿Los relojes dentro de la red se la organización estan sincronizados?', 1),

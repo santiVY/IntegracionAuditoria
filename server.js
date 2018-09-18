@@ -75,7 +75,6 @@ app.get('/preguntas/:norma', function (req, res) {
     });
 });
 
-
 app.get("/script.js", function (req, res) {
     res.sendFile(
         path.join(

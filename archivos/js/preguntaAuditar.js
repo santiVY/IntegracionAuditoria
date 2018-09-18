@@ -1,10 +1,18 @@
+var EMPRESA = "";
+var NORMA = "";
+var FECHA = "";
+
 $(document).ready(function () {
     getPreguntasAuditar();
+    $(document).ready(()=>{
+        EMPRESA = localStorage["empresa"];
+        NORMA = localStorage["norma"];
+        FECHA = localStorage["fecha"];
+    });
 });
 
 function getPreguntasAuditar() {
     IDS = [];
-    respuesta = [];
     var norma = getParameterByName('norma');
     $.getJSON("preguntas/" + norma, null, function (response) {
         $(".preguntas").html();
@@ -15,9 +23,9 @@ function getPreguntasAuditar() {
             tr = "<tr>";
             tr += "<td>" + response[i].idpregunta + "</td>";
             tr += "<td>" + response[i].texto + "</td>";
-            tr += "<td>" + question_select + "</td>";
+            tr += "<td class='respuesta'>" + question_select + "</td>";
             tr += "</tr>";
-            $(".preguntas").append(tr);          
+            $(".preguntas").append(tr);     
         }
     });
 }
@@ -28,12 +36,33 @@ function getParameterByName(name) {
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
-/*
-var select = document.getElementById('answer_:id');
-select.addEventListener('change',
-    function () {
-        var selectedOption = this.options[select.selectedIndex];
-        console.log(selectedOption.value);
-        respuesta.push(selectedOption.value);
-    });
-*/
+
+function enviar_respuesta(){
+    RESPUESTA = [];
+    for(i=1; i <= IDS.length; i++){
+       RESPUESTA.push(parseInt($("#answer_"+i).val()));
+    }
+    var suma = 0;
+    var resultado = "";
+    for(j=0; j < RESPUESTA.length; j++){
+        suma += RESPUESTA[j];
+    }
+    porcentaje_gana = suma * 0,80;
+    if(suma > porcentaje_gana){
+        resultado = "PASO";
+        swal({
+            title: "La prueba paso con mas de un 80%",
+            text: "Da click en el botón aceptar!",
+            icon: "success",
+            button: "Aceptar",
+          });
+    }else{
+        resultado = "NO PASO";
+        swal({
+            title: "La prueba no paso",
+            text: "La auditoria no cumple con los requisistos minimos para pasar la auditoria!",
+            icon: "error",
+            button: "Aceptar",
+          });
+    }
+  };
