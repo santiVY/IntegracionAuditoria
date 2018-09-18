@@ -55,6 +55,21 @@ form{
     border-radius: 5px;
 }
 
+.scrollTablaPreguntas {
+    width: 100%;
+    height: 400px;
+    overflow: scroll;
+}
+
+.scrollTablaPreguntas::-webkit-scrollbar{
+    width: 7px;
+}
+
+.scrollTablaPreguntas::-webkit-scrollbar-thumb{
+    background: black;
+    border-radius: 5px;
+}
+
 @media all and (max-width: 600px){
     a{
         width:100%;
