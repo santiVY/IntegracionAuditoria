@@ -85,10 +85,8 @@ app.post('/auditoria/crear', function (req, res) {
       if (err) throw err;
       if(result.affectedRows >= 1){
         res.json({insertID: result.insertId});
-        res.redirect('/index')
       }else{
         res.json({insertID: -1});
-        res.redirect('/index')
       }
     });
   });
