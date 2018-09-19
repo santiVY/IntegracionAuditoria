@@ -76,5 +76,11 @@ form{
         height:auto;
         margin:2px;
     }
+
+    input{
+        width:100%;
+        height:auto;
+        margin:2px;
+    }
 }
 

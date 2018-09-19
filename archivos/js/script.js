@@ -19,7 +19,7 @@ function getAuditoria() {
     $.getJSON("/auditorias", function (data) {
         var items = [];
         $.each(data, function (key, val) {
-            items.push("<tr><td>" + (items.length + 1) + "</td> <td>" + val.nombre + "</td> <td>" + val.nit + "</td> </tr>");
+            items.push("<tr><td>" + (items.length + 1) + "</td> <td>" + val.norma + "</td> <td>" + val.fecha + "</td> <td>" + val.empresa + "</td> <td>" + val.respuesta + "</td> </tr>");
         });
         $(".auditorias").append(items);
     });

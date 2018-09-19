@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-09-2018 a las 21:36:41
+-- Tiempo de generación: 19-09-2018 a las 03:53:36
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.2
 
@@ -20,8 +20,7 @@ SET time_zone = "+00:00";
 
 --
 -- Base de datos: `auditoria`
-CREATE DATABASE auditoria;
-USE  auditoria;
+--
 
 -- --------------------------------------------------------
 
@@ -32,10 +31,17 @@ USE  auditoria;
 CREATE TABLE `auditoria` (
   `idauditoria` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  `empresa_idempresa` int(11) NOT NULL,
-  `usuario_idusuario` int(11) NOT NULL,
-  `norma_idnorma` int(11) NOT NULL
+  `empresa` varchar(100) NOT NULL,
+  `norma` varchar(100) NOT NULL,
+  `respuesta` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `auditoria`
+--
+
+INSERT INTO `auditoria` (`idauditoria`, `fecha`, `empresa`, `norma`, `respuesta`) VALUES
+(2, '2018-09-12', 'LUIS AMIGO', 'ISO27001', 'NO PASO');
 
 -- --------------------------------------------------------
 
@@ -90,12 +96,6 @@ CREATE TABLE `pregunta` (
   `norma_idnorma` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `exam_question` (
-  `exam` int(11) NOT NULL,
-  `question` varchar(1000) NOT NULL,
-  `result` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Volcado de datos para la tabla `pregunta`
 --
@@ -140,7 +140,7 @@ INSERT INTO `pregunta` (`idpregunta`, `texto`, `norma_idnorma`) VALUES
 (37, '¿La documentación del sistema esta protegida contra acceso no autorizado?', 1),
 (38, '¿Poseen politicas y procedimientos para el intercambio de información entre el personal \r\nde la empresa, externos entre otros, sea de manera digital o fisica?', 1),
 (39, '¿Manejan controles en la información involucrada en el comercio electronico y \r\ntransaciones en linea?', 1),
-(40, '¿Manejan controles en la información involucrada en el comercio electronico y \r\ntransaciones en linea?', 1),
+(40, '¿Esta todas las politicas de la empresa diligenciadas acorde a los criterios de control de acceso?', 1),
 (41, '¿La empresa elabora y mantiene grabaciones de los registros para la auditoria de las actividades de los usuarios?', 1),
 (42, '¿Las fallas se resgistran y analizan para tomar acciones adecuadas?', 1),
 (43, '¿Los relojes dentro de la red se la organización estan sincronizados?', 1),
@@ -154,18 +154,6 @@ INSERT INTO `pregunta` (`idpregunta`, `texto`, `norma_idnorma`) VALUES
 (51, '¿Los equipos se encuentran protegidos ante eventos ambientales o fallas de energia u otras anomalias\r\ncausadas por fallas en el suministro de servicios?', 1),
 (52, '¿El cableado electrico y de telecomunicaciones se transporta de manera segura, es decir, utilizan \r\ncanalestas o tuberias?', 1),
 (53, '¿Realizan mantenimientos a sus equipos? Ver los reportes.', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `respuesta`
---
-
-CREATE TABLE `respuesta` (
-  `idrespuesta` int(11) NOT NULL,
-  `pregunta_idpregunta` int(11) NOT NULL,
-  `answer` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -187,10 +175,7 @@ CREATE TABLE `usuario` (
 -- Indices de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  ADD PRIMARY KEY (`idauditoria`,`norma_idnorma`),
-  ADD KEY `fk_auditoria_empresa_idx` (`empresa_idempresa`),
-  ADD KEY `fk_auditoria_usuario1_idx` (`usuario_idusuario`),
-  ADD KEY `fk_auditoria_norma1_idx` (`norma_idnorma`);
+  ADD PRIMARY KEY (`idauditoria`);
 
 --
 -- Indices de la tabla `empresa`
@@ -217,14 +202,6 @@ ALTER TABLE `pregunta`
   ADD KEY `fk_pregunta_norma1_idx` (`norma_idnorma`);
 
 --
--- Indices de la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  ADD PRIMARY KEY (`idrespuesta`,`pregunta_idpregunta`),
-  ADD UNIQUE KEY `idrespuesta_UNIQUE` (`idrespuesta`),
-  ADD KEY `fk_respuesta_pregunta1_idx` (`pregunta_idpregunta`);
-
---
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -239,31 +216,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `idauditoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idauditoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `idempresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idempresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `norma`
 --
 ALTER TABLE `norma`
-  MODIFY `idnorma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idnorma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
   MODIFY `idpregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
-
---
--- AUTO_INCREMENT de la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  MODIFY `idrespuesta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -276,24 +247,10 @@ ALTER TABLE `usuario`
 --
 
 --
--- Filtros para la tabla `auditoria`
---
-ALTER TABLE `auditoria`
-  ADD CONSTRAINT `fk_auditoria_empresa` FOREIGN KEY (`empresa_idempresa`) REFERENCES `empresa` (`idempresa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_auditoria_norma1` FOREIGN KEY (`norma_idnorma`) REFERENCES `norma` (`idnorma`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_auditoria_usuario1` FOREIGN KEY (`usuario_idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
   ADD CONSTRAINT `fk_pregunta_norma1` FOREIGN KEY (`norma_idnorma`) REFERENCES `norma` (`idnorma`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  ADD CONSTRAINT `fk_respuesta_pregunta1` FOREIGN KEY (`pregunta_idpregunta`) REFERENCES `pregunta` (`idpregunta`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

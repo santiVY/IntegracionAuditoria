@@ -12,6 +12,22 @@ $(document).ready(function () {
     });
 });
 
+function guardarAuditoria(){
+    d_empresa = EMPRESA;
+    d_norma = NORMA;
+    d_fecha = FECHA;
+    d_resl_auditoria = RESULTADO_AUDITORIA;
+      
+      data = {d_empresa: d_empresa, d_norma: d_norma, d_fecha: d_fecha, d_resl_auditoria: d_resl_auditoria};
+      $.post("/auditoria/crear", data, function(response){
+        if(response.insertID > 0){
+          swal("Insertado correctamente, su ID de examen es "+response.insertID);
+        }else{
+          swal("Hubo un error, Oops intente mas tarde");
+        }
+      });
+}
+
 function getPreguntasAuditar() {
     IDS = [];
     var norma = getParameterByName('norma');

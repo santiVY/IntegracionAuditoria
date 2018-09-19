@@ -75,6 +75,24 @@ app.get('/preguntas/:norma', function (req, res) {
     });
 });
 
+
+app.post('/auditoria/crear', function (req, res) {
+    var empresa = req.body.d_empresa;
+    var norma = req.body.d_norma;
+    var fecha = req.body.d_fecha;
+    var resultado = req.body.d_resl_auditoria;
+    con.query("INSERT INTO auditoria (fecha, empresa, norma, respuesta) VALUES (?, ?, ?, ?);", [fecha, empresa, norma, resultado], function (err, result, fields) {
+      if (err) throw err;
+      if(result.affectedRows >= 1){
+        res.json({insertID: result.insertId});
+        res.redirect('/index')
+      }else{
+        res.json({insertID: -1});
+        res.redirect('/index')
+      }
+    });
+  });
+
 app.get("/script.js", function (req, res) {
     res.sendFile(
         path.join(
