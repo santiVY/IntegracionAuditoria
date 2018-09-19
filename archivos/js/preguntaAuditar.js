@@ -1,6 +1,7 @@
 var EMPRESA = "";
 var NORMA = "";
 var FECHA = "";
+var RESULTADO_AUDITORIA = "";
 
 $(document).ready(function () {
     getPreguntasAuditar();
@@ -38,31 +39,55 @@ function getParameterByName(name) {
 }
 
 function enviar_respuesta(){
-    RESPUESTA = [];
-    for(i=1; i <= IDS.length; i++){
-       RESPUESTA.push(parseInt($("#answer_"+i).val()));
-    }
-    var suma = 0;
+
+    respuesta = [];
+    suma = 0;
+    var cont_si = 0;
+    var cont_no = 0;
+    var cont_na = 0;
     var resultado = "";
-    for(j=0; j < RESPUESTA.length; j++){
-        suma += RESPUESTA[j];
+    var mensaje = "";
+    total_campos = IDS.length;
+
+    for(i=1; i <= total_campos; i++){
+        respuesta.push(parseInt($("#answer_"+i).val()));
     }
-    porcentaje_gana = suma * 0,80;
+
+    for(j=0; j < respuesta.length; j++){
+        suma += respuesta[j];
+        if(respuesta[j] == 1){
+            cont_si++;
+        }else if(respuesta[j]  == 0){
+            cont_na++;
+        }else{
+            cont_no++;
+        }
+    }
+
+    mensaje = "Resultados: SI = " + cont_si + " preguntas, NO = " + cont_no + " preguntas, N/A = " + cont_na + "preguntas";
+
+    porcentaje_gana = total_campos * 0.80;
+
     if(suma > porcentaje_gana){
         resultado = "PASO";
         swal({
             title: "La prueba paso con mas de un 80%",
-            text: "Da click en el botón aceptar!",
+            text: "Presiona aceptar para continuar" + mensaje,
             icon: "success",
             button: "Aceptar",
           });
+          $("#resultadoEncabezado").append(resultado); 
+          RESULTADO_AUDITORIA = localStorage["resultadoEncabezado"] = resultado;
     }else{
         resultado = "NO PASO";
         swal({
             title: "La prueba no paso",
-            text: "La auditoria no cumple con los requisistos minimos para pasar la auditoria!",
+            text: mensaje,
             icon: "error",
             button: "Aceptar",
           });
+          $("#resultadoEncabezado").append(resultado); 
+          RESULTADO_AUDITORIA = localStorage["resultadoEncabezado"] = resultado;
     }
+    
   };
